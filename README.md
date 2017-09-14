@@ -1,24 +1,30 @@
-# README
+# ПТКПСД Монитор
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+Отображение информации по пользователям из базы ПТКПСД. Требуемый функционал:
 
-Things you may want to cover:
+* На главной страниц показывает ошибки при работе пользователей. С разбивкой по 15 записей на страницу в порядке убывания
 
-* Ruby version
+* Возможность перехода на страницу с пользователями. При клике на пользователя "приплывает" по ajax: 1. данные по пользователю; 2. протокол работы пользователя; 3. протокол ошибок работы пользователя. Все также с разбивкой по 15 записей на страницу
 
-* System dependencies
+# Система:
 
-* Configuration
+* Ruby 2.3.3p222
 
-* Database creation
+* Rails 5.1.2
 
-* Database initialization
+* создавалось на и для windows
 
-* How to run the test suite
+# Установка:
 
-* Services (job queues, cache servers, search engines, etc.)
+* установить ruby & DevKit: http://rubyinstaller.org/downloads. Инструкция по установке на русском: https://rubydev.ru/2012/04/ruby_rails_on_windows_rubyinstaller_devkit/
 
-* Deployment instructions
+* установить nodejs: https://nodejs.org/en/download/
 
-* ...
+* скачать проект
+
+* cmd -> войти в папку проекта -> выполнить команду: "bundle"
+
+* для локального запуска: "rails s". Сервер будет доступен по адресу "localhost:3000"
+
+* создать у себя windows сервис с  сервером (буду использовать thin): thin_service install -N "ИМЯСЕРВИСА" -c "c:\\projects\\путькпроекту\\" -p ПОРТДЛЯПРИЛОЖЕНИЯ . После создания зайти и изменить параметры запуска сервиса (к вариант - автоматический)
+
