@@ -1,0 +1,16 @@
+%nav{ class: 'navbar navbar-default navbar-fixed-top', role: 'navigation' }
+  %div{ class: 'navbar-header'}
+    %button.some{ type: 'button', class: 'navbar-toggle', 'data-toggle': 'collapse', 'data-target': '#bs-example-navbar-collapse-1' }
+      %span{ class: 'sr-only' } Toggle navigation
+      %span.icon-bar
+      %span.icon-bar
+      %span.icon-bar
+    %a.navbar-brand.some{ href: root_path }
+      ПТК ПСД
+
+  %div{ class: 'collapse navbar-collapse', id: 'bs-example-navbar-collapse-1'}
+    %ul.some{ class: 'nav navbar-nav'}
+      %li.EUsers
+        = link_to 'Пользователи', elo_users_path
+      %li.UserInformation
+        = link_to 'Информация пользователей', user_informations_path
