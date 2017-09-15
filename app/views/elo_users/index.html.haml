@@ -1,0 +1,7 @@
+- @elo_users.each do |u|
+  - unless u.id.nil? || u.id < 0
+    %p
+      = u.id
+      = u.name
+      - u.informations.each do |i|
+        = i.to_json
