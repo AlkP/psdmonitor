@@ -1,0 +1,7 @@
+%tr
+  %td= elo_user.id
+  - if elo_user.active?
+    %td= link_to elo_user.name, user_information_path(elo_user),remote: true
+  - else
+    %td.warning= elo_user.name
+

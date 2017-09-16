@@ -1,0 +1,9 @@
+%table.table.table-condensed
+  %thead
+    = render 'elo_usr_err_title'
+  %tbody
+    = render @elo_usr_errs
+
+%br
+
+= paginate @elo_usr_errs

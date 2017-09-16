@@ -1,7 +1,10 @@
-- @elo_users.each do |u|
-  - unless u.id.nil? || u.id < 0
-    %p
-      = u.id
-      = u.name
-      - u.informations.each do |i|
-        = i.to_json
+%div.col-md-4
+  %table.table.table-condensed
+    %thead
+      = render 'elo_user_title'
+    %tbody
+      = render @elo_users
+
+  %br
+  = paginate @elo_users
+%div.col-md-8.user-information
