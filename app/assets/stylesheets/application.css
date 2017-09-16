@@ -13,3 +13,12 @@
  *= require_tree .
  *= require_self
  */
+
+td.time {
+    width: 100px;
+}
+.short_table {
+    height: 330px;
+    display: block;
+    overflow-y: auto;
+}
