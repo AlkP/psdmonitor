@@ -24,7 +24,7 @@
           - @user.elo_usr_protocol.each do |p|
             %tr
               %td.time
-                = p.TIME_.to_date
+                = p.TIME_.to_s(:db)
               %td= p.OBJECT_
               %td= p.JOB_
   -#%div.row
