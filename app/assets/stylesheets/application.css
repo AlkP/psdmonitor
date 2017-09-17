@@ -18,7 +18,7 @@ td.time {
     width: 100px;
 }
 .short_table {
-    height: 330px;
+    height: 650px;
     display: block;
     overflow-y: auto;
 }
