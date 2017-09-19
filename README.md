@@ -30,4 +30,4 @@
 
 # Настройка
 
-* файл /config/dabase.yml.example переименовать в /config/dabase.yml и внести в него изменения
+* файл /app/models/elodb.rb внести в него изменения
