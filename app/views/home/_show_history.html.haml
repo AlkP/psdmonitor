@@ -1,0 +1,28 @@
+-#= @history.to_json
+%table.table.table-striped
+  %thead
+    %tr
+      %th
+        Время
+      %th
+        Модуль
+      %th
+        Объект
+      %th
+        Задача
+      %th
+        BIK
+  %tbody.tbody-question
+    - @history.each do |h|
+      %tr
+        %td
+          = h['TIME_'].to_date
+          = h['TIME_'].to_s(:time)
+        %td
+          = h['MODUL']
+        %td
+          = h['OBJECT_']
+        %td
+          = h['JOB_']
+        %td
+          = h['BIK'].to_i

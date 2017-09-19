@@ -1,0 +1,15 @@
+%table.table.table-striped
+  %thead
+    %tr
+      %th.time Дата
+      %th Пользователь
+      %th Сообщение
+  %tbody.tbody-groups
+    - @result.each do |el|
+      %tr
+        %td.time
+          = el['TIME_'].to_date
+          %br
+          = el['TIME_'].to_s(:time)
+        %td= el['USRNAME']
+        %td= el['ERRTEXT']

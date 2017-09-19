@@ -1,0 +1,24 @@
+// Place all the styles related to the home controller here.
+// They will automatically be included in application.css.
+// You can use Sass (SCSS) here: http://sass-lang.com/
+
+.time {
+  width: 100px;
+  text-align: center;
+}
+.request {
+  width: 400px;
+  text-align: center;
+}
+.other{
+  width: 100px;
+}
+table tbody.request_tbody{
+  width: 97%;
+  height: 85%;
+  position: fixed;
+  overflow: scroll;
+}
+tr td.time {
+  text-align: right;
+}

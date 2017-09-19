@@ -1,0 +1,15 @@
+%li.dropdown
+  %a
+    = select :usrname, :usrid, @user.map { |u| [u['USRNAME'],u['USRID'].to_i] }, { include_blank: true }
+
+:javascript
+  function sendRequest(e) {
+    $.ajax({
+      type: "POST",
+      url: "/home/show_history" + "?usrid=" + e
+    });
+    return false;
+  }
+  $('#usrname_usrid').change(function() {
+    sendRequest($(this).val());
+  });

@@ -1,6 +1,6 @@
 %html
   %head
-    %title Работа с ошибками ПТКПСД Монитора
+    %title GenbankStaffTested
     = csrf_meta_tags
     = stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload'
     = javascript_include_tag 'application', 'data-turbolinks-track': 'reload'
@@ -14,3 +14,6 @@
       %div.col-md-12
         = render 'layouts/menu'
         = yield
+      -#%div.col-md-4
+      -#  = render 'layouts/alert'
+      -#  -#= render 'layouts/modal'

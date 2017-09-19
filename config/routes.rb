@@ -1,9 +1,6 @@
 Rails.application.routes.draw do
-
-  resources :elo_users
-  resources :user_informations
-  resources :elo_usr_errs
-
-  root 'elo_usr_errs#index'
-
+  root 'home#index'
+  get 'home/history'
+  post 'home/show_history'
+  # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
 end

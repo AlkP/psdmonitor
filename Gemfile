@@ -11,6 +11,7 @@ gem 'haml-rails', '~> 0.9'
 gem "twitter-bootstrap-rails"
 gem 'kaminari'
 gem 'bootstrap-kaminari-views'
+gem 'tiny_tds'
 
 gem 'thin'
 gem 'thin_service'
@@ -28,7 +29,7 @@ gem 'sass-rails', '~> 5.0'
 # Use Uglifier as compressor for JavaScript assets
 gem 'uglifier', '>= 1.3.0'
 # See https://github.com/rails/execjs#readme for more supported runtimes
-# gem 'therubyracer', platforms: :ruby
+gem 'therubyracer', platforms: :ruby
 
 # Use CoffeeScript for .coffee assets and views
 gem 'coffee-rails', '~> 4.2'
