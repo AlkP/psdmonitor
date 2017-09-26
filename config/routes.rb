@@ -1,6 +1,7 @@
 Rails.application.routes.draw do
   root 'home#index'
-  get 'home/history'
+
+  get '/actions', to: 'home#history', as: 'user_history'
+
   post 'home/show_history'
-  # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
 end

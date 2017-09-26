@@ -3,7 +3,7 @@ class Elodb < ApplicationRecord
     @connect = TinyTds::Client.new username: 'USERNAME', password: 'PASSWORD',  host: 'IP_ADDRESS', port: '1433', database: 'DATABASE_NAME'
   end
 
-  def connect
+  def sql
     @connect
   end
 end
