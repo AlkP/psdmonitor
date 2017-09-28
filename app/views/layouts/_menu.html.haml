@@ -11,7 +11,10 @@
 
   %div{ class: 'collapse navbar-collapse', id: 'bs-example-navbar-collapse-1'}
     %ul.some{ class: 'nav navbar-nav'}
-      %li.Test
+      %li.Report
+        = link_to 'Отчет', report_path
+    %ul.some{ class: 'nav navbar-nav'}
+      %li.UserActions
         = link_to 'Пользовательская активность', user_history_path
 
     %ul{ class: 'nav navbar-nav navbar-right' }

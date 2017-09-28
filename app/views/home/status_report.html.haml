@@ -1,0 +1,130 @@
+%div.col-md-12
+  %div.col-md-4
+    %row
+      %h3.text-success
+        Счетчик файлов
+    %row
+      %div.col-md-4
+        %h3.text-success
+          = date_field "status_report", "date", class: "form-control", onchange: "SendDate(this);", value: @date
+  %div.col-md-4
+    %table.table.table-striped
+      %thead
+        %tr
+          %th 440 Положение
+          %th
+          %th
+      %tbody.tbody-groups
+        %tr
+          %td
+            Пакеты из ЦБ и квитовки на исх пакеты
+          %td
+            = @f400_count_ptkpsd_in
+          %td
+            пакетов
+        %tr
+          %td
+            Пакеты в ЦБ
+          %td
+            = @f400_count_ptkpsd_out
+          %td
+            пакетов
+        - unless @f400_count_ptkpsd_in_error == 0
+          %tr.danger
+            %td
+              Не принятых пакетов в ЦБ
+            %td
+              = @f400_count_ptkpsd_in_error
+            %td
+              пакетов
+        %tr
+          %td
+            Архивы из ЦБ
+          %td
+            = @f400_count_arj_in
+          %td
+            архивов
+        %tr
+          %td
+            Архивы в ЦБ
+          %td
+            = @f400_count_arj_out
+          %td
+            архивов
+        %tr
+          %td
+            Входящих из ЦБ
+          %td
+            = @f400_count_in
+          %td
+            файлов
+        %tr
+          %td
+            Исходящих в ЦБ
+          %td
+            = @f400_count_out
+          %td
+            файлов
+        %tr
+          %td
+            Входящих из ЦБ (в архивах)
+          %td
+            = @f400_count_arj_system_in
+          %td
+            файлов
+        %tr
+          %td
+            Исходящих в ЦБ (в архивах)
+          %td
+            = @f400_count_arj_system_out
+          %td
+            файлов
+  %div.col-md-4
+%div.col-md-6
+  - count = 0
+  %table.table.table-striped
+    %thead
+      %tr
+        %th
+        %th out
+        %th
+    %tbody.tbody-groups
+      - @f400_out.each do |f440|
+        %tr
+          %td= count += 1
+          - if f440['izvtub'].nil?
+            %td.danger
+              = f440['name']
+              %br
+              = f440['izvtub']
+          - else
+            %td
+              = f440['name']
+              %br
+              = f440['izvtub']
+          %td
+            = f440['time']
+            %br
+            = f440['time_izvtub']
+%div.col-md-6
+  - count = 0
+  %table.table.table-striped
+    %thead
+      %tr
+        %th
+        %th in
+        %th
+    %tbody.tbody-groups
+      - @f400_in.each do |f440|
+        %tr
+          %td= count += 1
+          %td
+            = f440['name']
+          %td
+            = f440['time']
+
+:javascript
+    function SendDate(e) {
+      var url = "status_report?date=" + e.value;
+      window.location = url;
+    }
