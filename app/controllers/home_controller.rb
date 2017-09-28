@@ -36,6 +36,7 @@ class HomeController < ApplicationController
                                           , CONVERT(char(10), f.time, 108) time
                                           , r_file.name izvtub
                                           , CONVERT(char(10), r_file.time, 108) time_izvtub
+                                          , r_file.success izvtub_success
                                     FROM fsmonitor.dbo.tfiles f
                                       left join fsmonitor.dbo.trelations r on r.tfile_id_parent = f.id and r.type = 'izvtub'
                                       left join fsmonitor.dbo.tfiles r_file on r_file.id = r.tfile_id
