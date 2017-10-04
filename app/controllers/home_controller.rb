@@ -97,8 +97,10 @@ class HomeController < ApplicationController
     @f400_count_ptkpsd_in_error,
     @f400_count_ptkpsd_out =
         counts.collect { |c| c["count"] }
-    cmd = "call c:\\utils\\files_count.cmd #{@date}"
+    cmd = "call c:\\utils\\files_count_in_archive.cmd #{@date}"
     @f400_count_arj_system_in, @f400_count_arj_system_out = (%x( #{cmd} )).split(',')
+    cmd = "call c:\\utils\\files_count.cmd c:\\work\\diasoft\\in\\*"
+    @f400_count_diasoft_in = (%x( #{cmd} ))
   end
 
   private

@@ -79,6 +79,14 @@
             = @f400_count_arj_system_out
           %td
             файлов
+        - unless @f400_count_diasoft_in.to_i == 0
+          %tr.danger
+            %td
+              Не выгруженные в Диасофт
+            %td
+              = @f400_count_diasoft_in
+            %td
+              файлов
   %div.col-md-4
 %div.col-md-6
   - count = 0
