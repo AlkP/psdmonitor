@@ -1,13 +1,12 @@
 %div.col-md-12
-  %div.col-md-4
+  %div.col-md-3
     %row
       %h3.text-success
         Счетчик файлов
     %row
-      %div.col-md-4
-        %h3.text-success
-          = date_field "status_report", "date", class: "form-control", onchange: "SendDate(this);", value: @date
-  %div.col-md-4
+      %h3.text-success
+        = date_field "status_report", "date", class: "form-control data-select", onchange: "SendDate(this);", value: @date
+  %div.col-md-3
     %table.table.table-striped
       %thead
         %tr
@@ -87,50 +86,70 @@
               = @f400_count_diasoft_in
             %td
               файлов
-  %div.col-md-4
-%div.col-md-6
-  - count = 0
-  %table.table.table-striped
-    %thead
-      %tr
-        %th
-        %th out
-        %th
-    %tbody.tbody-groups
-      - @f400_out.each do |f440|
-        %tr
-          %td
-            = count += 1
-          - if f440['izvtub_success'] != true
-            %td.danger
-              = f440['name']
-              %br
-              = f440['izvtub']
-          - else
-            %td
-              = f440['name']
-              %br
-              = f440['izvtub']
-          %td
-            = f440['time']
-            %br
-            = f440['time_izvtub']
-%div.col-md-6
-  - count = 0
-  %table.table.table-striped
-    %thead
-      %tr
-        %th
-        %th in
-        %th
-    %tbody.tbody-groups
-      - @f400_in.each do |f440|
-        %tr
-          %td= count += 1
-          %td
-            = f440['name']
-          %td
-            = f440['time']
+  %div.col-md-3
+  %div.col-md-3
+%div.col-md-12
+  %div.panel-group#panel-668960
+    %div.panel.panel-default
+      %div.panel-heading
+        = link_to "311 положение", "#panel-element-221956", { "data-toggle": "collapse", "data-parent": "#panel-668960" }
+      %div.panel-collapse.collapse#panel-element-221956
+        %div.panel-body
+          Нет файлов по положению
+    %div.panel.panel-default
+      %div.panel-heading
+        = link_to "440 положение", "#panel-element-811053", { "data-toggle": "collapse", "data-parent": "#panel-668960" }
+      %div.panel-collapse.collapse#panel-element-811053
+        %div.panel-body
+          %div.col-md-6
+            - count = 0
+            %table.table.table-striped
+              %thead
+                %tr
+                  %th
+                  %th исходящие
+                  %th
+              %tbody.tbody-groups
+                - @f400_out.each do |f440|
+                  %tr
+                    %td
+                      = count += 1
+                    - if f440['izvtub_success'] != true
+                      %td.danger
+                        = f440['name']
+                        %br
+                        = f440['izvtub']
+                    - else
+                      %td
+                        = f440['name']
+                        %br
+                        = f440['izvtub']
+                    %td
+                      = f440['time']
+                      %br
+                      = f440['time_izvtub']
+          %div.col-md-6
+            - count = 0
+            %table.table.table-striped
+              %thead
+                %tr
+                  %th
+                  %th входящие
+                  %th
+              %tbody.tbody-groups
+                - @f400_in.each do |f440|
+                  %tr
+                    %td= count += 1
+                    %td
+                      = f440['name']
+                    %td
+                      = f440['time']
+    %div.panel.panel-default
+      %div.panel-heading
+        = link_to "550 положение", "#panel-element-221256", { "data-toggle": "collapse", "data-parent": "#panel-668960" }
+      %div.panel-collapse.collapse#panel-element-221256
+        %div.panel-body
+          Нет файлов по положению
 
 :javascript
     function SendDate(e) {
