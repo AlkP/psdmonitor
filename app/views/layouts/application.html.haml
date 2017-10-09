@@ -1,11 +1,12 @@
 %html
   %head
     %title Genbank Monitor
+    = favicon_link_tag 'logo.ico'
     = csrf_meta_tags
     = stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload'
     = javascript_include_tag 'application', 'data-turbolinks-track': 'reload'
 
-  %body
+  %body.default_font
 
     %div.container-fluid
       %br
@@ -14,6 +15,3 @@
       %div.col-md-12
         = render 'layouts/menu'
         = yield
-      -#%div.col-md-4
-      -#  = render 'layouts/alert'
-      -#  -#= render 'layouts/modal'

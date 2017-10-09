@@ -5,16 +5,16 @@
       %span.icon-bar
       %span.icon-bar
       %span.icon-bar
-    %a.navbar-brand.some{ href: root_path }
-      -#= image_tag("logo.png", border: 0, size: '115x30')
-      ПТК ПСД
-
+    %a.navbar-brand.some.menu_font{ href: root_path }
+      = image_tag "logo_ptkpsd_short.png", class: "menu_icon"
+      Главная
+      -#= image_tag "logo_ptkpsd.png", class: "menu_icon_big"
   %div{ class: 'collapse navbar-collapse', id: 'bs-example-navbar-collapse-1'}
-    %ul.some{ class: 'nav navbar-nav'}
-      %li.Report
+    %ul.some.menu_font{ class: 'nav navbar-nav'}
+      %li.StatusReport
         = link_to 'Отчет', report_path
-    %ul.some{ class: 'nav navbar-nav'}
-      %li.UserActions
+    %ul.some.menu_font{ class: 'nav navbar-nav'}
+      %li.History
         = link_to 'Пользовательская активность', user_history_path
 
     %ul{ class: 'nav navbar-nav navbar-right' }
@@ -22,3 +22,6 @@
         %a
           = @title if @title
       = render 'user_filter' if action_name == 'history'
+
+%script
+  checkPage( "#{action_name.classify}" );

@@ -13,3 +13,37 @@
  *= require_tree .
  *= require_self
  */
+
+@font-face {
+    font-family: 'Still_Time_Cyr';
+    /*src:url('icomoon.eot');*/
+    /*src:url('icomoon.eot?#iefix') format('embedded-opentype'),*/
+    /*url('icomoon.svg#icomoon') format('svg'),*/
+    /*url('icomoon.woff') format('woff'),*/
+    src: url('Still_Time_Cyr.ttf') format('truetype');
+    font-weight: normal;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'StudioScriptC';
+    /*src:url('icomoon.eot');*/
+    /*src:url('icomoon.eot?#iefix') format('embedded-opentype'),*/
+    /*url('icomoon.svg#icomoon') format('svg'),*/
+    /*url('icomoon.woff') format('woff'),*/
+    src: url('StudioScriptC.otf') format('truetype');
+    font-weight: normal;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'Philosopher_Regular';
+    /*src:url('icomoon.eot');*/
+    /*src:url('icomoon.eot?#iefix') format('embedded-opentype'),*/
+    /*url('icomoon.svg#icomoon') format('svg'),*/
+    /*url('icomoon.woff') format('woff'),*/
+    src: url('Philosopher_Regular.ttf') format('truetype');
+    font-weight: normal;
+    font-style: normal;
+}
+
