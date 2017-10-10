@@ -1,0 +1,80 @@
+%table.table.table-striped
+  %thead
+    %tr
+      %th
+        = title
+      %th
+      %th
+  %tbody.tbody-groups
+    %tr
+      %td
+        Пакеты из ЦБ и квитовки на исх пакеты
+      %td
+        = count_ptkpsd_in
+      %td
+        пакетов
+    %tr
+      %td
+        Пакеты в ЦБ
+      %td
+        = count_ptkpsd_out
+      %td
+        пакетов
+    - unless count_ptkpsd_in_error == 0
+      %tr.danger
+        %td
+          Не принятых пакетов в ЦБ
+        %td
+          = count_ptkpsd_in_error
+        %td
+          пакетов
+    %tr
+      %td
+        Архивы из ЦБ
+      %td
+        = count_arj_in
+      %td
+        архивов
+    %tr
+      %td
+        Архивы в ЦБ
+      %td
+        = count_arj_out
+      %td
+        архивов
+    %tr
+      %td
+        Входящих из ЦБ
+      %td
+        = count_in
+      %td
+        файлов
+    %tr
+      %td
+        Исходящих в ЦБ
+      %td
+        = count_out
+      %td
+        файлов
+    %tr
+      %td
+        Входящих из ЦБ (в архивах)
+      %td
+        = count_arj_system_in
+      %td
+        файлов
+    %tr
+      %td
+        Исходящих в ЦБ (в архивах)
+      %td
+        = count_arj_system_out
+      %td
+        файлов
+    - unless count_diasoft_in.to_i == 0
+      %tr.danger
+        %td
+          Не выгруженные в Диасофт
+        %td
+          = count_diasoft_in
+        %td
+          файлов

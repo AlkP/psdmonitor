@@ -1,0 +1,46 @@
+- if f_out.count == 0 and f_in.count == 0
+  Нет файлов по положению
+- else
+  %div.col-md-6
+    - count = 0
+    %table.table.table-striped
+      %thead
+        %tr
+          %th
+          %th исходящие
+          %th
+      %tbody.tbody-groups
+        - f_out.each do |out_|
+          %tr
+            %td
+              = count += 1
+            - if out_['kvit_success'] != true
+              %td.danger
+                = out_['name']
+                %br
+                = out_['kvit']
+            - else
+              %td
+                = out_['name']
+                %br
+                = out_['kvit']
+            %td
+              = out_['time']
+              %br
+              = out_['time_kvit']
+  %div.col-md-6
+    - count = 0
+    %table.table.table-striped
+      %thead
+        %tr
+          %th
+          %th входящие
+          %th
+      %tbody.tbody-groups
+        - f_in.each do |in_|
+          %tr
+            %td= count += 1
+            %td
+              = in_['name']
+            %td
+              = in_['time']

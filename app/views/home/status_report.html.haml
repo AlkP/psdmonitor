@@ -7,87 +7,30 @@
       %h3.text-success
         = date_field "status_report", "date", class: "form-control data-select", onchange: "SendDate(this);", value: @date
   %div.col-md-3
-    %table.table.table-striped
-      %thead
-        %tr
-          %th 440 Положение
-          %th
-          %th
-      %tbody.tbody-groups
-        %tr
-          %td
-            Пакеты из ЦБ и квитовки на исх пакеты
-          %td
-            = @f400_count_ptkpsd_in
-          %td
-            пакетов
-        %tr
-          %td
-            Пакеты в ЦБ
-          %td
-            = @f400_count_ptkpsd_out
-          %td
-            пакетов
-        - unless @f400_count_ptkpsd_in_error == 0
-          %tr.danger
-            %td
-              Не принятых пакетов в ЦБ
-            %td
-              = @f400_count_ptkpsd_in_error
-            %td
-              пакетов
-        %tr
-          %td
-            Архивы из ЦБ
-          %td
-            = @f400_count_arj_in
-          %td
-            архивов
-        %tr
-          %td
-            Архивы в ЦБ
-          %td
-            = @f400_count_arj_out
-          %td
-            архивов
-        %tr
-          %td
-            Входящих из ЦБ
-          %td
-            = @f400_count_in
-          %td
-            файлов
-        %tr
-          %td
-            Исходящих в ЦБ
-          %td
-            = @f400_count_out
-          %td
-            файлов
-        %tr
-          %td
-            Входящих из ЦБ (в архивах)
-          %td
-            = @f400_count_arj_system_in
-          %td
-            файлов
-        %tr
-          %td
-            Исходящих в ЦБ (в архивах)
-          %td
-            = @f400_count_arj_system_out
-          %td
-            файлов
-        - unless @f400_count_diasoft_in.to_i == 0
-          %tr.danger
-            %td
-              Не выгруженные в Диасофт
-            %td
-              = @f400_count_diasoft_in
-            %td
-              файлов
   %div.col-md-3
+    = render 'table_with_counts', title: '440 Положение',
+                                  count_ptkpsd_in: @f440_count_ptkpsd_in,
+                                  count_ptkpsd_out: @f440_count_ptkpsd_out,
+                                  count_ptkpsd_in_error: @f440_count_ptkpsd_in_error,
+                                  count_arj_in: @f440_count_arj_in,
+                                  count_arj_out: @f440_count_arj_out,
+                                  count_in: @f440_count_in,
+                                  count_out: @f440_count_out,
+                                  count_arj_system_in: @f440_count_arj_system_in,
+                                  count_arj_system_out: @f440_count_arj_system_out,
+                                  count_diasoft_in: @f440_count_diasoft_in
   %div.col-md-3
+    = render 'table_with_counts', title: '550 Положение',
+                                  count_ptkpsd_in: @f550_count_ptkpsd_in,
+                                  count_ptkpsd_out: @f550_count_ptkpsd_out,
+                                  count_ptkpsd_in_error: @f550_count_ptkpsd_in_error,
+                                  count_arj_in: @f550_count_arj_in,
+                                  count_arj_out: @f550_count_arj_out,
+                                  count_in: @f550_count_in,
+                                  count_out: @f550_count_out,
+                                  count_arj_system_in: 0,
+                                  count_arj_system_out: 0,
+                                  count_diasoft_in: 0
 %div.col-md-12
   %div.panel-group#panel-668960
     %div.panel.panel-default
@@ -101,58 +44,16 @@
         = link_to "440 положение", "#panel-element-811053", { "data-toggle": "collapse", "data-parent": "#panel-668960" }
       %div.panel-collapse.collapse#panel-element-811053
         %div.panel-body
-          - if @f400_out.count == 0 and @f400_in.count == 0
-            Нет файлов по положению
-          - else
-            %div.col-md-6
-              - count = 0
-              %table.table.table-striped
-                %thead
-                  %tr
-                    %th
-                    %th исходящие
-                    %th
-                %tbody.tbody-groups
-                  - @f400_out.each do |f440|
-                    %tr
-                      %td
-                        = count += 1
-                      - if f440['izvtub_success'] != true
-                        %td.danger
-                          = f440['name']
-                          %br
-                          = f440['izvtub']
-                      - else
-                        %td
-                          = f440['name']
-                          %br
-                          = f440['izvtub']
-                      %td
-                        = f440['time']
-                        %br
-                        = f440['time_izvtub']
-            %div.col-md-6
-              - count = 0
-              %table.table.table-striped
-                %thead
-                  %tr
-                    %th
-                    %th входящие
-                    %th
-                %tbody.tbody-groups
-                  - @f400_in.each do |f440|
-                    %tr
-                      %td= count += 1
-                      %td
-                        = f440['name']
-                      %td
-                        = f440['time']
+          = render 'table_with_list', f_out: @f440_out,
+                                      f_in: @f440_in
     %div.panel.panel-default
       %div.panel-heading
         = link_to "550 положение", "#panel-element-221256", { "data-toggle": "collapse", "data-parent": "#panel-668960" }
       %div.panel-collapse.collapse#panel-element-221256
         %div.panel-body
-          Нет файлов по положению
+
+          = render 'table_with_list', f_out: @f550_out,
+                                      f_in: @f550_in
 
 :javascript
     function SendDate(e) {
