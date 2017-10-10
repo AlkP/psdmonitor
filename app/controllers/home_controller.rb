@@ -82,12 +82,12 @@ class HomeController < ApplicationController
 
                                   SELECT ISNULL((SELECT count(*) count
                                   FROM elodb.dbo.elo_arh_post f
-                                  where f.filetype = 'ИЭС1' and f.posttype = 'mz' and CAST(f.dt AS DATE) = CAST('#{@date}' AS DATE)
+                                  where f.filetype = N'ИЭС1' and f.posttype = 'mz' and CAST(f.dt AS DATE) = CAST('#{@date}' AS DATE)
                                   group by f.filetype), 0) as count;
 
                                   SELECT ISNULL((SELECT count(*) count
                                   FROM elodb.dbo.elo_arh_post f
-                                  where f.filetype = 'ОЭС' and f.posttype = 'mz' and CAST(f.dt AS DATE) = CAST('#{@date}' AS DATE)
+                                  where f.filetype = N'ОЭС' and f.posttype = 'mz' and CAST(f.dt AS DATE) = CAST('#{@date}' AS DATE)
                                   group by f.filetype), 0) as count;")
     client4 = Elodb.new
     @f550_out = client4.sql.execute("SELECT f.name name
@@ -135,14 +135,14 @@ class HomeController < ApplicationController
 
                                   SELECT ISNULL((SELECT count(*) count
                                   FROM elodb.dbo.elo_arh_post f
-                                  where f.filetype = 'ИЭС2' and f.posttype = 'wz' and CAST(f.dt AS DATE) = CAST('#{@date}' AS DATE)
-                                  group by f.filetype), 0) as count;
+                                  where (f.filetype = N'ИЭС1' or f.filetype = N'ИЭС2') and f.filename like 'wz____10.123%' and f.posttype = 'wz' and CAST(f.dt AS DATE) = CAST('#{@date}' AS DATE)
+                                  group by f.posttype), 0) as count;
 
                                   SELECT 0 as count;
 
                                   SELECT ISNULL((SELECT count(*) count
                                   FROM elodb.dbo.elo_arh_post f
-                                  where f.filetype = 'ОЭС' and f.posttype = 'wz' and CAST(f.dt AS DATE) = CAST('#{@date}' AS DATE)
+                                  where f.filetype = N'ОЭС' and f.filename like 'wz___123.010%' and f.posttype = 'wz' and CAST(f.dt AS DATE) = CAST('#{@date}' AS DATE)
                                   group by f.filetype), 0) as count;")
 
     @f440_count_in,
@@ -153,6 +153,7 @@ class HomeController < ApplicationController
     @f440_count_ptkpsd_in_error,
     @f440_count_ptkpsd_out =
         counts_440.collect { |c| c["count"] }
+
     @f550_count_in,
     @f550_count_out,
     @f550_count_arj_in,
@@ -163,7 +164,12 @@ class HomeController < ApplicationController
         counts_550.collect { |c| c["count"] }
 
     cmd = "call c:\\utils\\files_count_in_archive.cmd #{@date}"
-    @f440_count_arj_system_in, @f440_count_arj_system_out = (%x( #{cmd} )).split(',')
+    @f440_count_arj_system_in,
+    @f440_count_arj_system_out,
+    @f550_count_arj_system_in,
+    @f550_count_arj_system_out =
+        (%x( #{cmd} )).split(',')
+
     cmd = "call c:\\utils\\files_count.cmd c:\\work\\diasoft\\in\\*"
     @f440_count_diasoft_in = (%x( #{cmd} ))
   end
