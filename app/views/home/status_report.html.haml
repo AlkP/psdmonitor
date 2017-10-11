@@ -7,6 +7,17 @@
       %h3.text-success
         = date_field "status_report", "date", class: "form-control data-select", onchange: "SendDate(this);", value: @date
   %div.col-md-3
+    = render 'table_with_counts', title: '211/311 Положение',
+                                  count_ptkpsd_in: @f311_count_ptkpsd_in,
+                                  count_ptkpsd_out: @f311_count_ptkpsd_out,
+                                  count_ptkpsd_in_error: @f311_count_ptkpsd_in_error,
+                                  count_arj_in: @f311_count_arj_in,
+                                  count_arj_out: @f311_count_arj_out,
+                                  count_in: @f311_count_in,
+                                  count_out: @f311_count_out,
+                                  count_arj_system_in: @f311_count_arj_system_in,
+                                  count_arj_system_out: @f311_count_arj_system_out,
+                                  count_diasoft_in: 0
   %div.col-md-3
     = render 'table_with_counts', title: '440 Положение',
                                   count_ptkpsd_in: @f440_count_ptkpsd_in,
@@ -38,7 +49,8 @@
         = link_to "311 положение", "#panel-element-221956", { "data-toggle": "collapse", "data-parent": "#panel-668960" }
       %div.panel-collapse.collapse#panel-element-221956
         %div.panel-body
-          Нет файлов по положению
+          = render 'table_with_list', f_out: @f311_out,
+                                      f_in: @f311_in
     %div.panel.panel-default
       %div.panel-heading
         = link_to "440 положение", "#panel-element-811053", { "data-toggle": "collapse", "data-parent": "#panel-668960" }
@@ -51,7 +63,6 @@
         = link_to "550 положение", "#panel-element-221256", { "data-toggle": "collapse", "data-parent": "#panel-668960" }
       %div.panel-collapse.collapse#panel-element-221256
         %div.panel-body
-
           = render 'table_with_list', f_out: @f550_out,
                                       f_in: @f550_in
 
