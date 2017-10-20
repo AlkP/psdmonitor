@@ -16,8 +16,7 @@
                                   count_in: @f311_count_in,
                                   count_out: @f311_count_out,
                                   count_arj_system_in: @f311_count_arj_system_in,
-                                  count_arj_system_out: @f311_count_arj_system_out,
-                                  count_diasoft_in: 0
+                                  count_arj_system_out: @f311_count_arj_system_out
   %div.col-md-3
     = render 'table_with_counts', title: '440 Положение',
                                   count_ptkpsd_in: @f440_count_ptkpsd_in,
@@ -28,8 +27,7 @@
                                   count_in: @f440_count_in,
                                   count_out: @f440_count_out,
                                   count_arj_system_in: @f440_count_arj_system_in,
-                                  count_arj_system_out: @f440_count_arj_system_out,
-                                  count_diasoft_in: @f440_count_diasoft_in
+                                  count_arj_system_out: @f440_count_arj_system_out
   %div.col-md-3
     = render 'table_with_counts', title: '550 Положение',
                                   count_ptkpsd_in: @f550_count_ptkpsd_in,
@@ -40,8 +38,18 @@
                                   count_in: @f550_count_in,
                                   count_out: @f550_count_out,
                                   count_arj_system_in: @f550_count_arj_system_in,
-                                  count_arj_system_out: @f550_count_arj_system_out,
-                                  count_diasoft_in: 0
+                                  count_arj_system_out: @f550_count_arj_system_out
+%div.col-md-12
+  %div.col-md-3
+  %div.col-md-3
+  %div.col-md-3
+    = render 'table_with_counts_files',
+                                  count_diasoft_in: @f440_count_diasoft_in,
+                                  count_tmp: @f440_count_tmp,
+                                  count_err: @f440_count_err,
+                                  count_diasoft_request: @f440_count_diasoft_request,
+                                  count_diasoft_kwtfcb: @f440_count_diasoft_kwtfcb
+  %div.col-md-3
 %div.col-md-12
   %div.panel-group#panel-668960
     %div.panel.panel-default

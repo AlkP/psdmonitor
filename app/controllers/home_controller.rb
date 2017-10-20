@@ -235,8 +235,48 @@ class HomeController < ApplicationController
     @f550_count_arj_system_out =
         (%x( #{cmd} )).split(',')
 
-    cmd = "call c:\\utils\\files_count.cmd c:\\work\\diasoft\\in\\*"
-    @f440_count_diasoft_in = (%x( #{cmd} ))
+    if Time.now.strftime("%Y-%m-%d") == "#{@date}"
+      cmd = "call c:\\utils\\files_count.cmd"
+      @f440_count_diasoft_in,
+      @f440_count_tmp,
+      @f440_count_err =
+          (%x( #{cmd} )).split(',')
+    end
+
+    client10 = Diaswork.new
+    counts_440_load_in_Diasoft = client10.sql.execute("select count(*) count
+                                  from tSwift         sw  with (nolock)
+                                      ,tInstrument    ip  with (nolock index = XAK1tInstrument)
+                                      ,tInstrument    ic  with (nolock index = XAK1tInstrument)
+                                  where 1=1
+                                  and CAST(sw.Date AS DATE) = CAST('#{@date}' AS DATE)
+                                    and sw.InstrumentID = ip.InstrumentID
+                                    and ip.DsModuleID = 21
+                                    and ip.ParentID = ic.InstrumentID
+                                    and ic.Brief = '440-П'
+                                    and sw.BranchID = 2000
+                                  group by ic.Brief;
+
+                                  select count(*) count
+                                    from tSwift         sw  with (nolock)
+                                      ,tInstrument    ip  with (nolock index = XAK1tInstrument)
+                                      ,tInstrument    ic  with (nolock index = XAK1tInstrument)
+                                  where 1=1
+                                  and CAST(sw.Date AS DATE) = CAST('#{@date}' AS DATE)
+                                    and sw.InstrumentID = ip.InstrumentID
+                                    and ip.DsModuleID = 21
+                                    and ip.ParentID = ic.InstrumentID
+                                    and ic.Brief = '440-П квит'
+                                    and sw.BranchID = 2000
+                                  group by ic.Brief;
+
+                                  ")
+    @f440_count_diasoft_request,
+    @f440_count_diasoft_kwtfcb =
+        counts_440_load_in_Diasoft.collect { |c| c["count"] }
+
+    # cmd = "call c:\\utils\\files_count.cmd c:\\work\\diasoft\\in\\*"
+    # @f440_count_diasoft_in = (%x( #{cmd} ))
   end
 
   private

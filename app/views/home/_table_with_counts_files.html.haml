@@ -1,0 +1,47 @@
+%table.table.table-striped
+  %thead
+    %tr
+      %th
+      %th
+      %th
+  %tbody.tbody-groups
+    - unless count_diasoft_in.to_i == 0
+      %tr.danger
+        %td
+          Не выгруженные в Диасофт
+        %td
+          = count_diasoft_in
+        %td
+          файлов
+    - unless count_tmp.to_i == 0
+      %tr.danger
+        %td
+          Не отправленные в ЦБ
+        %td
+          = count_tmp
+        %td
+          файлов
+    - unless count_err.to_i == 0
+      %tr.danger
+        %td
+          Выгруженные в ЦБ с ошибками
+        %td
+          = count_err
+        %td
+          файлов
+    - unless count_diasoft_request.to_i == 0
+      %tr
+        %td
+          Загруженные в Диасофт запросы
+        %td
+          = count_diasoft_request
+        %td
+          файлов
+    - unless count_diasoft_kwtfcb.to_i == 0
+      %tr
+        %td
+          Загруженные в Диасофт квитовки
+        %td
+          = count_diasoft_kwtfcb
+        %td
+          файлов
