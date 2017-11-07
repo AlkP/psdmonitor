@@ -40,7 +40,8 @@ class HomeController < ApplicationController
     if ( @date.length > 10 )
       redirect_to root_path
     else
-      @f440_out = @client.sql.execute("SELECT f.name name
+      @f440_out = @client.sql.execute("SELECT f.id f_id
+                                            , f.name name
                                             , CONVERT(char(10), f.time, 108) time
                                             , r_file.name kvit
                                             , CONVERT(char(10), r_file.time, 108) time_kvit
@@ -153,14 +154,17 @@ class HomeController < ApplicationController
                                     where f.filetype = N'ОЭС' and f.filename like 'wz___123.010%' and f.posttype = 'wz' and CAST(f.dt AS DATE) = CAST('#{@date}' AS DATE)
                                     group by f.filetype), 0) as count;")
       client7 = Elodb.new
-      @f311_out = client7.sql.execute("SELECT f.name name
+      @f311_out = client7.sql.execute("SELECT f.id f_id
+                                            , f.name name
                                             , CONVERT(char(10), f.time, 108) time
                                             , r_file.name kvit
                                             , CONVERT(char(10), r_file.time, 108) time_kvit
                                             , r_file.success kvit_success
+                                            , rez.value msg
                                       FROM fsmonitor.dbo.tfiles f
                                         left join fsmonitor.dbo.trelations r on r.tfile_id_parent = f.id and r.type = '311_uvArh'
                                         left join fsmonitor.dbo.tfiles r_file on r_file.id = r.tfile_id
+                                        left join FSMonitor.dbo.TXML_DATA rez on rez.tfile_id = r_file.id and rez.type = 'Element' and rez.name = N'REZ_ARH'
                                       where CAST(f.date AS DATE) = CAST('#{@date}' AS DATE)
                                               and f.name like '[AB]N10123__________.arj'
                                       order by f.id asc")

@@ -6,41 +6,55 @@
     %table.table.table-striped
       %thead
         %tr
-          %th
+          %th.num
           %th исходящие
-          %th
+          %th.time
       %tbody.tbody-groups
         - f_out.each do |out_|
           %tr
-            %td
+            %td.num
               = count += 1
             - if out_['kvit_success'] != true
               %td.danger
                 = out_['name']
                 %br
                 = out_['kvit']
+                %br
+                = out_['msg']
+                -#- unless out_['msg'].nil?
+                  -#%div.panel-group{ id: "panel-#{out_['f_id']}" }
+                  -#  %div.panel.panel-default
+                  -#    %div.panel-heading
+                  -#      = link_to "ошибка подробно", "#panel-element-#{out_['f_id']}", { class: "panel-title", "data-toggle": "collapse", "data-parent": "#panel-#{out_['f_id']}" }
+                  -#    %div.panel-collapse.collapse{ id: "panel-element-#{out_['f_id']}" }
+                  -#      %div.panel-body
+                  -#        = out_['msg']
             - else
               %td
                 = out_['name']
                 %br
                 = out_['kvit']
-            %td
+                %br
+                = out_['msg']
+                %br
+            %td.time
               = out_['time']
               %br
               = out_['time_kvit']
+              %br
   %div.col-md-6
     - count = 0
     %table.table.table-striped
       %thead
         %tr
-          %th
+          %th.num
           %th входящие
-          %th
+          %th.time
       %tbody.tbody-groups
         - f_in.each do |in_|
           %tr
-            %td= count += 1
+            %td.num= count += 1
             %td
               = in_['name']
-            %td
+            %td.time
               = in_['time']

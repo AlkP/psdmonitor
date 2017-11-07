@@ -15,6 +15,16 @@
  *= require_self
  */
 
+.time {
+    width: 100px;
+    text-align: center;
+}
+
+.num {
+    width: 10px;
+    text-align: center;
+}
+
 @font-face {
     font-family: 'Still_Time_Cyr';
     /*src:url('icomoon.eot');*/
