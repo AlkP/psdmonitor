@@ -6,6 +6,8 @@
     = stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload'
     = javascript_include_tag 'application', 'data-turbolinks-track': 'reload'
   %body.default_font
+    %div#page-preloader
+      %span.spinner
     %div.container-fluid
       %br
       %br
@@ -13,3 +15,8 @@
       %div.col-md-12
         = render 'layouts/menu'
         = yield
+
+:javascript
+  $(document).ready(function(){
+    $('#page-preloader').hide();;
+  });

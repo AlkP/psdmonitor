@@ -1,0 +1,12 @@
+%div.col-md-6
+  %table.table.table-striped
+    %thead
+      %tr
+        %th
+    %tbody.tbody-groups
+      - f_errors.each do |f|
+        %tr
+          %td
+            = link_to f, show_error_path(f), remote: true
+%div.col-md-6.body-for-error
+

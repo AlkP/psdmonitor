@@ -13,10 +13,19 @@
   %div{ class: 'collapse navbar-collapse', id: 'bs-example-navbar-collapse-1'}
     %ul.some.menu_font{ class: 'nav navbar-nav'}
       %li.StatusReport
-        = link_to 'Отчет', report_path
+        = link_to 'Отчет', report_path, onClick: "setSpinner();"
+    %ul.some.menu_font{ class: 'nav navbar-nav'}
+      %li.Print
+        = link_to 'Печать 311', print_path, onClick: "setSpinner();"
+    - if action_name == 'print'
+      %form.navbar-form.navbar-left{ role: 'search' }
+        %div.form-group
+          %input.form-control{ name: 'search', class: "search-form", onkeypress: "return ((event.charCode >= 48 && event.charCode <= 57 && this.value.length < 7) || event.charCode == 0);", onkeyup: "setVisibleSearchButton(this);" }
+        %button.btn.btn-default.search-form-button.hidden{ type: 'submit' }
+          Поиск
     %ul.some.menu_font{ class: 'nav navbar-nav'}
       %li.History
-        = link_to 'Пользовательская активность', user_history_path
+        = link_to 'Пользовательская активность', user_history_path, onClick: "setSpinner();"
 
     %ul{ class: 'nav navbar-nav navbar-right' }
       %li
@@ -24,5 +33,5 @@
           = @title if @title
       = render 'user_filter' if action_name == 'history'
 
-%script
+:javascript
   checkPage( "#{action_name.classify}" );

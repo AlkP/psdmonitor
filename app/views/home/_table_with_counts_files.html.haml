@@ -5,6 +5,30 @@
       %th
       %th
   %tbody.tbody-groups
+    - unless count_311_diasoft.to_i == 0
+      %tr
+        %td
+          Всего из Диасофта выгружено
+        %td
+          = count_311_diasoft
+        %td
+          файлов
+    - unless count_311_sbc.to_i == 0
+      %tr
+        %td
+          По юрлицам из Диасофта поступило
+        %td
+          = count_311_sbc
+        %td
+          файлов
+    - unless count_311_sfc.to_i == 0
+      %tr
+        %td
+          По физлицам из Диасофта поступило
+        %td
+          = count_311_sfc
+        %td
+          файлов
     - unless count_diasoft_in.to_i == 0
       %tr.danger
         %td

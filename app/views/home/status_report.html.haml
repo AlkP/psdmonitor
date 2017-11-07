@@ -5,7 +5,7 @@
         Счетчик файлов
     %row
       %h3.text-success
-        = date_field "status_report", "date", class: "form-control data-select", onchange: "SendDate(this);", value: @date
+        = date_field "status_report", "date", 'data-date-format': "yyyy-mm-dd", class: "form-control data-select", onchange: "SendDate(this);", value: @date
   %div.col-md-3
     = render 'table_with_counts', title: '211/311 Положение',
                                   count_ptkpsd_in: @f311_count_ptkpsd_in,
@@ -42,8 +42,20 @@
 %div.col-md-12
   %div.col-md-3
   %div.col-md-3
+    = render 'table_with_counts_files',
+                                  count_311_diasoft: @f311_count_diasoft,
+                                  count_311_sbc: @f311_count_sbc,
+                                  count_311_sfc: @f311_count_sfc,
+                                  count_diasoft_in: 0,
+                                  count_tmp: 0,
+                                  count_err: 0,
+                                  count_diasoft_request: 0,
+                                  count_diasoft_kwtfcb: 0
   %div.col-md-3
     = render 'table_with_counts_files',
+                                  count_311_diasoft: 0,
+                                  count_311_sbc: 0,
+                                  count_311_sfc: 0,
                                   count_diasoft_in: @f440_count_diasoft_in,
                                   count_tmp: @f440_count_tmp,
                                   count_err: @f440_count_err,
@@ -59,6 +71,13 @@
         %div.panel-body
           = render 'table_with_list', f_out: @f311_out,
                                       f_in: @f311_in
+    - unless @f440_error.count == 0
+      %div.panel.panel-default
+        %div.panel-heading
+          = link_to "440 положение: Ошибки", "#panel-element-817053", { "data-toggle": "collapse", "data-parent": "#panel-668960" }
+        %div.panel-collapse.collapse#panel-element-817053
+          %div.panel-body
+            = render 'table_with_list_errors', f_errors: @f440_error
     %div.panel.panel-default
       %div.panel-heading
         = link_to "440 положение", "#panel-element-811053", { "data-toggle": "collapse", "data-parent": "#panel-668960" }
@@ -75,7 +94,13 @@
                                       f_in: @f550_in
 
 :javascript
-    function SendDate(e) {
-      var url = "status_report?date=" + e.value;
-      window.location = url;
-    }
+  function SendDate(e) {
+    var url = "status_report?date=" + e.value;
+    $('#page-preloader').show();
+    window.location = url;
+  }
+  var ua = window.navigator.userAgent;
+  var msie = ua.indexOf("MSIE ");
+  if((navigator.userAgent.toLowerCase().indexOf('firefox') > -1) || (msie > 0 || !!navigator.userAgent.match(/Trident.*rv\:11\./))){
+    $('#status_report_date').datepicker();
+  }

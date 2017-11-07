@@ -1,0 +1,47 @@
+%div.col-md-12
+  %div.col-md-4
+    %row
+      %h3.text-success
+        = date_field "status_report", "date", 'data-date-format': "yyyy-mm-dd", class: "form-control data-select", onchange: "SendDate(this);", value: @date
+  %div.col-md-8
+%div.col-md-12
+  %div.col-md-4.scrolling
+    %table.table.table-striped
+      %thead
+        %tr
+          %th
+          %th
+      %tbody.tbody-groups
+        - @list.each do |e|
+          %tr
+            %td
+              = link_to e['name'], show_file_path(e['id']), remote: true, onclick: "showSpinner();"
+              - unless e['sbe'].nil?
+                = link_to e['sbe'], show_file_path(e['id_sbe']), remote: true, onclick: "showSpinner();"
+              - unless e['sbf'].nil?
+                = link_to e['sbf'], show_file_path(e['id_sbf']), remote: true, onclick: "showSpinner();"
+              - unless e['sbp'].nil?
+                = link_to e['sbp'], show_file_path(e['id_sbp']), remote: true, onclick: "showSpinner();"
+              - unless e['sbr'].nil?
+                = link_to e['sbr'], show_file_path(e['id_sbr']), remote: true, onclick: "showSpinner();"
+            %td
+              = e['time']
+  %div.col-md-8.file-details
+
+:javascript
+  function SendDate(e) {
+    document.getElementsByClassName('file-details')[0].innerHTML = "";
+    var url = "print?date=" + e.value;
+    $('#page-preloader').show();
+    window.location = url;
+  }
+  var ua = window.navigator.userAgent;
+  var msie = ua.indexOf("MSIE ");
+  if((navigator.userAgent.toLowerCase().indexOf('firefox') > -1) || (msie > 0 || !!navigator.userAgent.match(/Trident.*rv\:11\./))){
+    $('#status_report_date').datepicker();
+  }
+
+  function showSpinner() {
+    document.getElementsByClassName('file-details')[0].innerHTML = '';
+    $('#page-preloader').show();
+  }

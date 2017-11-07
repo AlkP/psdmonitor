@@ -11,6 +11,7 @@
  * It is generally better to create a new file per style scope.
  *
  *= require_tree .
+ *= require bootstrap-datepicker
  *= require_self
  */
 
@@ -47,3 +48,29 @@
     font-style: normal;
 }
 
+.scrolling {
+    height: 83%;
+    overflow-x: scroll;
+    overflow-y: scroll;
+}
+
+#page-preloader {
+    position: fixed;
+    left: 0;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    background: #ffffff;
+    opacity: 0.5;
+    z-index: 100500;
+}
+
+#page-preloader .spinner {
+    width: 90px;
+    height: 90px;
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    background: url('/assets/logo.gif') no-repeat 100% 100%;
+    margin: -16px 0 0 -16px;
+}

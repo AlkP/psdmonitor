@@ -9,6 +9,8 @@ gem 'jquery-rails'
 gem 'haml'
 gem 'haml-rails', '~> 0.9'
 gem "twitter-bootstrap-rails"
+gem 'bootstrap-datepicker-rails'
+gem 'twitter-bootstrap-calendar'
 gem 'kaminari'
 gem 'bootstrap-kaminari-views'
 gem 'tiny_tds'
