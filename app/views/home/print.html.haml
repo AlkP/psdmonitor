@@ -10,22 +10,25 @@
       %thead
         %tr
           %th
-          %th
+          %th.time
       %tbody.tbody-groups
+        - r = ''
         - @list.each do |e|
           %tr
-            %td
-              = link_to e['name'], show_file_path(e['id']), remote: true, onclick: "showSpinner();"
-              - unless e['sbe'].nil?
-                = link_to e['sbe'], show_file_path(e['id_sbe']), remote: true, onclick: "showSpinner();"
-              - unless e['sbf'].nil?
-                = link_to e['sbf'], show_file_path(e['id_sbf']), remote: true, onclick: "showSpinner();"
-              - unless e['sbp'].nil?
-                = link_to e['sbp'], show_file_path(e['id_sbp']), remote: true, onclick: "showSpinner();"
-              - unless e['sbr'].nil?
-                = link_to e['sbr'], show_file_path(e['id_sbr']), remote: true, onclick: "showSpinner();"
-            %td
-              = e['time']
+            - if "#{r}" != "#{e['name']}"
+              %td
+                - r = e['name']
+                = link_to e['name'], show_file_path(e['id']), remote: true, onclick: "showSpinner();"
+                - unless @list_kwit.nil?
+                  - @list_kwit.each do |k|
+                    - if e['name'] == k['name'] && !k['kwit'].nil?
+                      = link_to k['kwit'], show_file_path(k['id_kwit']), remote: true, onclick: "showSpinner();"
+              %td.time
+                = e['time']
+                - unless @list_kwit.nil?
+                  - @list_kwit.each do |k|
+                    - if e['name'] == k['name'] && !k['kwit'].nil?
+                      = k['kwit_date']
   %div.col-md-8.file-details
 
 :javascript

@@ -328,41 +328,30 @@ class HomeController < ApplicationController
       else
         @list = @client.sql.execute("
                                       select f.id id, f.name name, CONVERT(char(10), f.time, 108) time
-                                              , sbe.id id_sbe, sbe.name sbe, sbe.date sbe_date
-                                              , sbf.id id_sbf, sbf.name sbf, sbf.date sbf_date
-                                              , sbp.id id_sbp, sbp.name sbp, sbp.date sbp_date
-                                              , sbr.id id_sbr, sbr.name sbr, sbr.date sbr_date
                                       from fsmonitor.dbo.tfiles f
-
-                                      left join fsmonitor.dbo.trelations rel_sbe
-                                        on f.ID = rel_sbe.TFILE_ID_PARENT
-                                        and rel_sbe.type = 'sbe'
-                                      left join fsmonitor.dbo.tfiles sbe
-                                        on sbe.id = rel_sbe.TFILE_ID
-
-                                      left join fsmonitor.dbo.trelations rel_sbf
-                                        on f.ID = rel_sbf.TFILE_ID_PARENT
-                                        and rel_sbf.type = 'sbf'
-                                      left join fsmonitor.dbo.tfiles sbf
-                                        on sbf.id = rel_sbf.TFILE_ID
-
-                                      left join fsmonitor.dbo.trelations rel_sbp
-                                        on f.ID = rel_sbp.TFILE_ID_PARENT
-                                        and rel_sbp.type = 'sbp'
-                                      left join fsmonitor.dbo.tfiles sbp
-                                        on sbp.id = rel_sbp.TFILE_ID
-
-                                      left join fsmonitor.dbo.trelations rel_sbr
-                                        on f.ID = rel_sbr.TFILE_ID_PARENT
-                                        and rel_sbr.type = 'sbr'
-                                      left join fsmonitor.dbo.tfiles sbr
-                                        on sbr.id = rel_sbr.TFILE_ID
 
                                       where f.name like 'SBC__3510123[_]%.xml'
                                         and CAST(f.date AS DATE) = CAST('#{@date}' AS DATE)
 
-                                      order by f.name
-")
+                                      order by f.name")
+
+        client2 = Elodb.new
+        @list_kwit = client2.sql.execute("
+                                      select f.id id, f.name name, CONVERT(char(10), f.time, 108) time
+                                              , kwit.id id_kwit, kwit.name kwit, kwit.date kwit_date
+
+                                      from fsmonitor.dbo.tfiles f
+
+                                      left join fsmonitor.dbo.trelations rel_kwit
+                                        on f.ID = rel_kwit.TFILE_ID_PARENT
+                                        and rel_kwit.type in ('sbe', 'sbf', 'sbp', 'sbr')
+                                      left join fsmonitor.dbo.tfiles kwit
+                                        on kwit.id = rel_kwit.TFILE_ID
+
+                                      where f.name like 'SBC__3510123[_]%.xml'
+                                        and CAST(f.date AS DATE) = CAST('#{@date}' AS DATE)
+
+                                      order by f.name")
       end
     else
       if ((search.length > 3) && (search.length < 8))
