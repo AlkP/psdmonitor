@@ -11,5 +11,6 @@
     return false;
   }
   $('#usrname_usrid').change(function() {
+    $('#page-preloader').show();
     sendRequest($(this).val());
   });
