@@ -26,3 +26,17 @@ test:
 production:
   <<: *default
   database: db/production.sqlite3
+
+elodb_mssql:
+  adapter: sqlserver
+  host: 10.0.0.0
+  username: username
+  password: password
+  database: elodb
+
+fsm_mssql:
+  adapter: sqlserver
+  host: 10.0.0.0
+  username: username
+  password: password
+  database: fsmonitoring
