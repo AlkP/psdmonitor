@@ -4,9 +4,10 @@ class UserInformationsController < ApplicationController
   end
 
   def show
-    user_information = UserInformation.where("UNICODE = ?", '$user$' + params[:id].to_s)
+    user_information = UserInformation.where("UNICODE = ?", '$user$' + params[:id])
     @name = user_information.where("CODE = '$exec$'")[0].nil? ? "" : user_information.where("CODE = '$exec$'")[0].VOL
     @email = user_information.where("CODE = '$execmail$'")[0].nil? ? "" : user_information.where("CODE = '$execmail$'")[0].VOL
-    @user = EloUser.find(params[:id].to_s)
+    @elo_usr_protocol = EloUsrProtocol.where("USERID = ?", params[:id])
+    # @elo_usr_errs = EloUsrErr.where("USERID = ?", params[:id])
   end
 end

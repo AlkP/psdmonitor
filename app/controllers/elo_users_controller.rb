@@ -1,6 +1,6 @@
 class EloUsersController < ApplicationController
   def index
-    @elo_users = EloUser.includes(:check_user_active).page(params[:page])
+    @elo_users = EloUser.includes(:active_users).page(params[:page])
   end
 
 end

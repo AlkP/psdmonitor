@@ -1,4 +1,5 @@
 class EloUserJob < ApplicationRecord
+  establish_connection :elodb_mssql
 
   self.table_name = "elo_user_job"
   self.primary_key = 'USERID'

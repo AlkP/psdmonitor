@@ -1,6 +1,7 @@
 class UserInformation < ApplicationRecord
+  establish_connection :elodb_mssql
 
-  self.table_name = "ldv_add_info"
+  self.table_name = 'ldv_add_info'
 
   def elo_user_id
     if self.UNICODE[0..5] == '$user$'
