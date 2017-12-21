@@ -7,11 +7,8 @@
     = javascript_include_tag 'application', 'data-turbolinks-track': 'reload'
 
   %body
-    %div.container-fluid
-      %br
-      %br
-      %br
+    %div.container-fluid.main-frame
+      = render 'layouts/menu'
       %div.col-md-12
-        = render 'layouts/menu'
         = render 'layouts/alert'
         = yield
