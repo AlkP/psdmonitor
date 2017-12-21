@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20171219111633) do
+ActiveRecord::Schema.define(version: 20171221121746) do
 
   create_table "MESSAGECOUNTER", primary_key: "ID", id: :integer, force: :cascade do |t|
     t.varchar "FILEMASK", limit: 50
@@ -51,6 +51,38 @@ ActiveRecord::Schema.define(version: 20171219111633) do
     t.integer "TXML_DATA_ID"
   end
 
+  create_table "cb_rates", force: :cascade do |t|
+    t.bigint "currency_id", null: false
+    t.date "date", null: false
+    t.integer "scale", default: 1, null: false
+    t.decimal "course", precision: 16, scale: 5, null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["currency_id", "date"], name: "date_currency_id_unique", unique: true
+    t.index ["currency_id"], name: "currency"
+    t.index ["date"], name: "date"
+  end
+
+  create_table "currencies", force: :cascade do |t|
+    t.string "code", limit: 3, null: false
+    t.string "abbreviation", limit: 3, null: false
+    t.string "name", limit: 75, null: false
+    t.index ["code"], name: "code", unique: true
+  end
+
+  create_table "rates", force: :cascade do |t|
+    t.bigint "currency_id", null: false
+    t.date "date", null: false
+    t.integer "scale", default: 1, null: false
+    t.decimal "buy", precision: 16, scale: 5, null: false
+    t.decimal "sell", precision: 16, scale: 5, null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["currency_id", "date"], name: "date_currency_id_unique", unique: true
+    t.index ["currency_id"], name: "currency"
+    t.index ["date"], name: "date"
+  end
+
   create_table "sysdiagrams", primary_key: "diagram_id", id: :integer, force: :cascade do |t|
     t.string "name", limit: 128, null: false
     t.integer "principal_id", null: false
@@ -85,4 +117,6 @@ ActiveRecord::Schema.define(version: 20171219111633) do
 
   add_foreign_key "TACTIONS", "TFILES", column: "TFILE_ID", primary_key: "ID", name: "FK_TACTIONS_TFILES"
   add_foreign_key "TRELATIONS", "TFILES", column: "TFILE_ID", primary_key: "ID", name: "FK_TRELATIONS_TFILES"
+  add_foreign_key "cb_rates", "currencies"
+  add_foreign_key "rates", "currencies"
 end
