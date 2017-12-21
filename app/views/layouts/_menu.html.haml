@@ -6,9 +6,25 @@
       %span.icon-bar
       %span.icon-bar
     %a.navbar-brand.some{ href: root_path }
-      ПТК ПСД
+      %span.glyphicon.glyphicon-home
 
   %div{ class: 'collapse navbar-collapse', id: 'bs-example-navbar-collapse-1'}
     %ul.some{ class: 'nav navbar-nav'}
       %li.EUsers
         = link_to 'Пользователи', elo_users_path
+
+    %ul{ class: 'nav navbar-nav navbar-right' }
+      - if user_signed_in?
+        %li.dropdown
+          %a{ href: '#', class: 'dropdown-toggle', 'data-toggle': 'dropdown' }
+            = current_user.login
+            -#%strong.glyphicon.glyphicon-chevron-down
+            %span.glyphicon.glyphicon-collapse-down
+          %ul.dropdown-menu
+            %li
+              = link_to t('EditUser'), edit_user_registration_path
+            %li
+              = link_to t('Logout'), destroy_user_session_path, method: :delete
+      - else
+        %li
+          = link_to t('LogIn'), new_user_session_path
