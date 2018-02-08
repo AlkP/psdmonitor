@@ -30,7 +30,6 @@
 # available at http://guides.rubyonrails.org/i18n.html.
 
 en:
-  hello: "Hello world"
   views:
     pagination:
       first: '<<'
@@ -38,3 +37,4 @@ en:
       next: '>'
       last: '>>'
       truncate: '..'
+  remove-all-sorts: 'Delete all sorts'
