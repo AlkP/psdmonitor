@@ -1,6 +1,8 @@
 class EloUsersController < ApplicationController
   def index
-    @elo_users = EloUser.includes(:active_users).page(params[:page])
+    key, sort = cookies[:elo_users]&.downcase&.split('/')
+    @elo_users = EloUser.includes(:inactive_users).page(params[:page])
+    # cookies[:elo_users] = 'id/desc'
   end
 
 end
