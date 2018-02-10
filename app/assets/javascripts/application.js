@@ -14,4 +14,5 @@
 //= require twitter/bootstrap
 //= require rails-ujs
 //= require turbolinks
+//= require frappe-charts.min.iife
 //= require_tree .

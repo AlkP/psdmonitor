@@ -1,0 +1,72 @@
+
+<div id='chart1' class='col-md-6'></div>
+<div id='chart2' class='col-md-6'></div>
+
+<script>
+  var data1 = {
+    labels: <%= @dates.to_json.html_safe %>,
+    datasets: [
+      {
+        title: "вх",
+        values: <%= @f311_in_files.to_json.html_safe %>
+      },
+      {
+        title: "исх",
+        values: <%= @f311_out_files.to_json.html_safe %>
+      }
+    ]
+  };
+
+  var chart1 = new Chart({
+    parent: "#chart1", // or a DOM element
+    title: "311 Положение",
+    data: data1,
+    type: 'line', // or 'line', 'scatter', 'pie', 'percentage'
+    height: 450,
+
+    colors: ['#cd005b', '#132ba9'],
+    //  colors: ['#7cd6fd', 'violet'],
+    // hex-codes or these preset colors;
+    // defaults (in order):
+    // ['light-blue', 'blue', 'violet', 'red',
+    // 'orange', 'yellow', 'green', 'light-green',
+    // 'purple', 'magenta', 'grey', 'dark-grey']
+    region_fill: 1,
+    x_axis_mode: 'tick',  // for short label ticks
+    // or 'span' for long spanning vertical axis lines
+    y_axis_mode: 'span',  // for long horizontal lines, or 'tick'
+    is_series: 1,
+    format_tooltip_x: d => (d + '').toUpperCase(),
+    format_tooltip_y: d => d + ' файлов'
+  });
+
+  var data2 = {
+    labels: <%= @dates.to_json.html_safe %>,
+    datasets: [
+      {
+        title: "вх",
+        values: <%= @f440_in_files.to_json.html_safe %>
+      },
+      {
+        title: "исх",
+        values: <%= @f440_out_files.to_json.html_safe %>
+      }
+    ]
+  };
+
+  var chart2 = new Chart({
+    parent: "#chart2",
+    title: "440 Положение",
+    data: data2,
+    type: 'line',
+    height: 450,
+
+    colors: ['#023200', '#f63700'],
+    region_fill: 1,
+    x_axis_mode: 'tick',
+    y_axis_mode: 'span',
+    is_series: 1,
+    format_tooltip_x: d => (d + '').toUpperCase(),
+    format_tooltip_y: d => d + ' файлов'
+  });
+</script>

@@ -12,6 +12,7 @@ gem "twitter-bootstrap-rails"
 gem 'kaminari'
 gem 'bootstrap-kaminari-views'
 gem 'devise'
+gem 'frappe_charts'
 
 gem 'thin'
 gem 'thin_service'
