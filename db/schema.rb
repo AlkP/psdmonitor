@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20171221121746) do
+ActiveRecord::Schema.define(version: 20180226142708) do
 
   create_table "MESSAGECOUNTER", primary_key: "ID", id: :integer, force: :cascade do |t|
     t.varchar "FILEMASK", limit: 50
@@ -49,6 +49,11 @@ ActiveRecord::Schema.define(version: 20171221121746) do
     t.string "NAME", limit: 100, null: false
     t.text "VALUE"
     t.integer "TXML_DATA_ID"
+  end
+
+  create_table "accesses", force: :cascade do |t|
+    t.bigint "user_id", null: false
+    t.integer "type", limit: 2, null: false
   end
 
   create_table "cb_rates", force: :cascade do |t|
@@ -92,7 +97,6 @@ ActiveRecord::Schema.define(version: 20171221121746) do
   end
 
   create_table "users", force: :cascade do |t|
-    t.integer "role", default: -1, null: false
     t.string "login", default: "", null: false
     t.string "email", default: "", null: false
     t.string "encrypted_password", default: "", null: false

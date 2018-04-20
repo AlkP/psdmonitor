@@ -1,21 +1,7 @@
-%div.row
-  %form.form-horizontal{ role: "form" }
-    %div.col-md-6
-      %div.form-group
-        %label.col-sm-4.control-label
-          ФИО
-        %div.col-sm-8
-          %input.form-control{ value: "#{@name}", disabled: true }
-    %div.col-md-6
-      %div.form-group
-        %label.col-sm-4.control-label
-          email
-        %div.col-sm-8
-          %input.form-control{ value: "#{@email}", disabled: true }
-
 - if @elo_usr_protocol.count == 0
   %h2 Протокол пользователя пуст
 - else
+  %h2= "Протокол пользователя { #{@id} }"
   %div.row
     %div.col-md-12
       %table.table.table-condensed

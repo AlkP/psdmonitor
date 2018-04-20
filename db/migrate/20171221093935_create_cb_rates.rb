@@ -12,5 +12,7 @@ class CreateCbRates < ActiveRecord::Migration[5.1]
       t.index ['date'],                 name: 'date'
       t.index ['currency_id', 'date'],  name: 'date_currency_id_unique',  unique: true
     end
+
+    add_foreign_key :cb_rates,  :currencies,  column: :currency_id, primary_key: :id
   end
 end

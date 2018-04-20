@@ -1,7 +1,9 @@
 %tr
   %td= elo_user.id
   - if elo_user.active?
-    %td= link_to elo_user.name, user_information_path(elo_user.id), remote: true
+    %td= link_to elo_user.login, user_information_path(elo_user.id), remote: true
   - else
-    %td.warning= elo_user.name
+    %td.warning= elo_user.login
+  %td= elo_user.email
+  %td= elo_user.name
 

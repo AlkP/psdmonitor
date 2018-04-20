@@ -17,8 +17,18 @@ class EloUser < ApplicationRecord
     self.USRID.to_i
   end
 
-  def name
+  def login
     self.USRNAME
+  end
+
+  def email
+    user_information = UserInformation.where("UNICODE = ?", '$user$' + self.id.to_s)
+    return user_information.where("CODE = '$execmail$'")[0].nil? ? "" : user_information.where("CODE = '$execmail$'")[0].VOL
+  end
+
+  def name
+    user_information = UserInformation.where("UNICODE = ?", '$user$' + self.id.to_s)
+    return user_information.where("CODE = '$exec$'")[0].nil? ? "" : user_information.where("CODE = '$exec$'")[0].VOL
   end
 
   def active?
