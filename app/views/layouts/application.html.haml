@@ -9,6 +9,7 @@
   %body
     %div.container-fluid.main-frame
       = render 'layouts/menu'
-      %div.col-md-12
+      %div.col-md-12.alert-message
         = render 'layouts/alert'
+      %div.col-md-12
         = yield

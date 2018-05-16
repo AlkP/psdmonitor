@@ -1,0 +1,64 @@
+
+%div.row
+  %div.col-md-12
+    %table.table.table-striped
+      %thead
+        %tr
+          %th
+          %th
+            = t('.files')
+          %th
+            = t('.arh')
+          %th
+            = t('.diasoft')
+          %th
+            = t('.kwit')
+      %tbody
+        %tr
+          %td
+            = t('.f311in')
+          %td{style: "font-size: 96px"}
+            = @f311in
+          %td{style: "font-size: 96px"}
+            = @f311inArch
+          %td{style: "font-size: 96px"}
+            = @f311inDiasoft
+          %td{style: "font-size: 96px"}
+        %tr
+          %td
+            = t('.f311out')
+          %td{style: "font-size: 96px"}
+            = @f311out
+          %td{style: "font-size: 96px"}
+            = @f311outArch
+          %td{style: "font-size: 96px"}
+            = @f311outDiasoft
+          %td{style: "font-size: 96px"}
+            = @f311outKwit
+        %tr
+          %td{ rowspan: 2 }
+            = t('.f440in')
+          %td{style: "font-size: 96px"}
+            = @f440in
+          %td{style: "font-size: 96px"}
+            = @f440inArch
+          %td{style: "font-size: 96px"}
+            = @f440inDiasoft
+          %td{style: "font-size: 96px"}
+        %tr
+          %td{style: "font-size: 46px", colspan: 4}
+            = @f440inRequest.map{|k, v| "#{k}: #{v}"}.join("; ")
+            %br
+            - request = @f440inRequest.map{|k, v| v}.sum
+            = "Итого запросов: #{request}; Квитанций: #{@f440in - request}"
+        %tr
+          %td
+            = t('.f440out')
+          %td{style: "font-size: 96px"}
+            = @f440out
+          %td{style: "font-size: 96px"}
+            = @f440outArch
+          %td{style: "font-size: 96px"}
+            = @f440outDiasoft
+          %td{style: "font-size: 96px"}
+            = @f440outKwit

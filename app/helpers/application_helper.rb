@@ -22,8 +22,8 @@ module ApplicationHelper
     nil
   end
 
-  def menu_item(name, link, avatar)
-    img = image_tag avatar, class: 'main-menu-icon'
+  def menu_item(name, link, avatar = nil)
+    img = avatar.present? ? (image_tag avatar, class: 'main-menu-icon') : ''
     content_tag :li, class: current_page?(link) ? 'active' : '' do
       content_tag :a, href: link do
         img + name

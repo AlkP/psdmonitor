@@ -1,0 +1,32 @@
+
+%div.row
+  %div.col-md-2
+  %div.col-md-8
+    %table.table.table-striped
+      %thead
+        %tr
+          %th
+          %th
+            = t('.files')
+          %th
+            = t('.arh')
+          %th
+            = t('.diasoft')
+      %tbody
+        %tr
+          %td
+            = t('.in')
+          %td
+            = @inFiles
+          %td
+          %td
+            = @inDiasoftFiles
+        %tr
+          %td
+            = t('.out')
+          %td
+            = @outFiles
+          %td
+          %td
+            = @outDiasoftFiles
+

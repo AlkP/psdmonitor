@@ -1,1 +1,5 @@
-$('.dashboards').html("<%= escape_javascript render 'regulations/temple' %>");
+<% if user_signed_in?  %>
+  $('.table-with-forms').html("<%= escape_javascript render 'regulations/temple_forms' %>");
+<% else  %>
+  $('.dashboards').html("<%= escape_javascript render 'regulations/temple' %>");
+<% end  %>
