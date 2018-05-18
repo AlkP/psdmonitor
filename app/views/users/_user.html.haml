@@ -1,6 +1,10 @@
 %tr
   %td
-    = link_to user.login, edit_user_path(user)
+    - if policy(user).edit?
+      = link_to user.login, edit_user_path(user)
+    - else
+      = user.login
   %td
     = user.email
   %td
+    = link_to '', user_path(user), class: 'glyphicon glyphicon-remove',method: :delete, data: { confirm: 'Are you sure?' } if policy(user).destroy?

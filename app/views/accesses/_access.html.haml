@@ -1,0 +1,4 @@
+%div.col-md-1
+  = link_to '', user_access_path(access.user, access), class: 'glyphicon glyphicon-remove', method: :delete, remote: true, data: { confirm: 'Are you sure?' } if policy(access).destroy?
+%div.col-md-11
+  = access.role

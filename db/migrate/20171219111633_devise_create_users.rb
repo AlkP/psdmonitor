@@ -8,8 +8,8 @@ class DeviseCreateUsers < ActiveRecord::Migration[5.1]
       t.string :encrypted_password, null: false, default: ""
 
       ## Recoverable
-      t.string   :reset_password_token
-      t.datetime :reset_password_sent_at
+      # t.string   :reset_password_token
+      # t.datetime :reset_password_sent_at
 
       ## Rememberable
       t.datetime :remember_created_at
@@ -37,8 +37,8 @@ class DeviseCreateUsers < ActiveRecord::Migration[5.1]
 
       t.index ['login'], name: 'login', unique: true
       t.index ['email'], name: 'email', unique: true
-      t.index ['reset_password_token'], name: 'reset_password_token', unique: true
-      t.index ['unlock_token'], name: 'unlock_token', unique: true
+      # t.index ['reset_password_token'], name: 'reset_password_token', unique: true
+      # t.index ['unlock_token'], name: 'unlock_token', unique: true
     end
 
     # add_index :users, :email,                unique: true

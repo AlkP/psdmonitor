@@ -38,3 +38,4 @@ en:
       last: '>>'
       truncate: '..'
   remove-all-sorts: 'Delete all sorts'
+  not_have_access: 'You do not have access to this page'

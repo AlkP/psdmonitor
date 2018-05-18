@@ -1,0 +1,31 @@
+= form_for @user, html: { class: 'form-horizontal', role: 'form' } do |f|
+
+  %div.form-group
+    %label.col-sm-4
+    %div.col-sm-8
+      = render 'users/errors'
+
+  %div.form-group
+    %label.col-sm-4.control-label.some{ for: 'user_login' }
+      = :login
+    %div.col-sm-8
+      = f.text_field :login, autofocus: true, :class => "form-control", :id => "user_login", :type => "groupname"
+  %div.form-group
+    %label.col-sm-4.control-label.some{ for: 'user_email' }
+      = :email
+    %div.col-sm-8
+      = f.email_field :email, :class => "form-control", :id => "user_email", :type => "groupname"
+  %div.form-group
+    %label.col-sm-4.control-label.some{ for: 'user_password' }
+      = :password
+    %div.col-sm-8
+      = f.password_field :password, :class => "form-control", :id => "user_password", :type => "groupname", autocomplete: "off"
+  %div.form-group
+    %label.col-sm-4.control-label.some{ for: 'user_password_confirmation' }
+      = :password_confirmation
+    %div.col-sm-8
+      = f.password_field :password_confirmation, :class => "form-control", :id => "user_password_confirmation", :type => "groupname", autocomplete: "off"
+  %div.form-group
+    %label.col-sm-4
+    %div.col-sm-8
+      = f.submit

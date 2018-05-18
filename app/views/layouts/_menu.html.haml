@@ -10,8 +10,9 @@
 
   %div{ class: 'collapse navbar-collapse', id: 'bs-example-navbar-collapse-1'}
     %ul.some{ class: 'nav navbar-nav'}
-      = menu_item('Ошибки ПТКПСД', elo_usr_errs_path, 'users.png')
       - if user_signed_in?
+        - if current_user.dashboards?
+          = menu_item('Ошибки ПТКПСД', elo_usr_errs_path, 'users.png')
         - if current_user.admin?
           = menu_item('Пользователи', users_path, 'users.png')
           = menu_item('Пользователи ПТКПСД', elo_users_path)

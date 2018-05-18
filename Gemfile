@@ -13,6 +13,7 @@ gem 'kaminari'
 gem 'bootstrap-kaminari-views'
 gem 'devise'
 gem 'frappe_charts'
+gem 'pundit'
 
 gem 'thin'
 gem 'thin_service'

@@ -100,8 +100,6 @@ ActiveRecord::Schema.define(version: 20180226142708) do
     t.string "login", default: "", null: false
     t.string "email", default: "", null: false
     t.string "encrypted_password", default: "", null: false
-    t.string "reset_password_token"
-    t.datetime "reset_password_sent_at"
     t.datetime "remember_created_at"
     t.integer "sign_in_count", default: 0, null: false
     t.datetime "current_sign_in_at"
@@ -115,8 +113,6 @@ ActiveRecord::Schema.define(version: 20180226142708) do
     t.datetime "updated_at", null: false
     t.index ["email"], name: "email", unique: true
     t.index ["login"], name: "login", unique: true
-    t.index ["reset_password_token"], name: "reset_password_token", unique: true
-    t.index ["unlock_token"], name: "unlock_token", unique: true
   end
 
   add_foreign_key "TACTIONS", "TFILES", column: "TFILE_ID", primary_key: "ID", name: "FK_TACTIONS_TFILES"

@@ -1,0 +1,8 @@
+%h1
+  Роли пользователя
+= form_for [@user, @access], html: { role: 'form' }, remote: true do |n|
+  = n.button :submit do
+    %i.glyphicon.glyphicon-plus
+    Add role
+  = n.select_tag :role, options_for_select(Access.roles.map {|k, v| [k.humanize.capitalize, v]})
+= render @user.accesses

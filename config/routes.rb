@@ -1,5 +1,6 @@
 Rails.application.routes.draw do
 
+  post '/users(.:format)', to: 'users#create'
   devise_for :users
   resources :users do
     resources :accesses
