@@ -3,8 +3,9 @@ class RegulationsController < ApplicationController
     if user_signed_in? && current_user.dashboards?
       @f311_err         =  Messagecounter.form_311_err.take.try(:SERIALNUMBER)
       @f440_err         =  Messagecounter.form_440_err.take.try(:SERIALNUMBER)
-      @srv9WorkDir      =  Messagecounter.srv9WorkDir.take.try(:SERIALNUMBER)
-      @srv69PostDir     =  Messagecounter.srv69PostDir.take.try(:SERIALNUMBER)
+      @srv9work         =  Messagecounter.srv9work.take.try(:SERIALNUMBER)
+      @srv69post        =  Messagecounter.srv69post.take.try(:SERIALNUMBER)
+      @srv57inc         =  Messagecounter.srv57inc.take.try(:SERIALNUMBER)
 
       @f311in           = Tfile.form_311_in.today.count
       @f311inArch       = Messagecounter.form_311_in_arch.today.take.try(:SERIALNUMBER)

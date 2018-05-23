@@ -1,12 +1,15 @@
-<div class=" col-md-3 alert alert-<%= @f311_err > 0 ? 'danger' : 'success' %>">
+<div class=" col-md-2 alert alert-<%= @f311_err > 0 ? 'danger' : 'success' %>">
   <h1>311: ERR</h1>
 </div>
-<div class=" col-md-3 alert alert-<%= @f440_err > 0 ? 'danger' : 'success' %>">
+<div class=" col-md-2 alert alert-<%= @f440_err > 0 ? 'danger' : 'success' %>">
   <h1>440: ERR</h1>
 </div>
-<div class=" col-md-3 alert alert-<%= @srv9WorkDir > 0 ? 'danger' : 'success' %>">
+<div class=" col-md-3 alert alert-<%= @srv9work > 0 ? 'danger' : 'success' %>">
   <h1>10.3.0.9: work</h1>
 </div>
-<div class=" col-md-3 alert alert-<%= @srv69PostDir > 0 ? 'danger' : 'success' %>">
+<div class=" col-md-3 alert alert-<%= @srv69post > 0 ? 'danger' : 'success' %>">
   <h1>10.3.0.69: post</h1>
+</div>
+<div class=" col-md-2 alert alert-<%= @srv57inc > 0 ? 'danger' : 'success' %>">
+  <h1>10.3.0.57: inc</h1>
 </div>
