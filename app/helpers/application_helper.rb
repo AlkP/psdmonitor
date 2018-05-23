@@ -23,10 +23,13 @@ module ApplicationHelper
   end
 
   def menu_item(name, link, avatar = nil)
-    img = avatar.present? ? (image_tag avatar, class: 'main-menu-icon') : ''
+    img   = avatar.present? ? (image_tag avatar, class: 'main-menu-icon') : ''
+    title = content_tag :div, class: "#{'main-menu-text' if avatar.present?}" do
+              name
+            end
     content_tag :li, class: current_page?(link) ? 'active' : '' do
       content_tag :a, href: link do
-        img + name
+        avatar.present? ? img + title : title
       end
     end
   end

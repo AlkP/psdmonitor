@@ -15,6 +15,14 @@ class User < ApplicationRecord
     self.accesses.find_by(role: 5).present?
   end
 
+  def autorefresh?
+    self.accesses.find_by(role: 6).present?
+  end
+
+  def charts?
+    self.accesses.find_by(role: 8).present?
+  end
+
   def f440?
     self.accesses.find_by(role: 30).present?
   end

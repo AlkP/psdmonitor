@@ -2,31 +2,17 @@
   %div.row.table-with-forms
     = render 'regulations/temple_forms'
 
-  :javascript
-    var timerId = setInterval(function() {
-      $.ajax({
-        type: 'get',
-        dataType: 'jsonp',
-        url: '/'
-      });
-    }, 45000);
+  - if current_user.autorefresh?
+    :javascript
+      var timerId = setInterval(function() {
+        $.ajax({
+          type: 'get',
+          dataType: 'jsonp',
+          url: '/'
+        });
+      }, 45000);
 
 - else
   %div.row
     %h1
       Добро пожаловать
-  -#  %div.col-md-2
-  -#    = select_tag('period', options_for_select([ ['За 7 дней', 7], ['За 14 дней', 14], ['За 30 дней', 30] ], 7),
-  -#                   class: 'form-control', onchange: "sendFilter(this);")
-  -#
-  -#%div.row.dashboards
-  -#  = render 'regulations/temple'
-  -#
-  -#:javascript
-  -#  function sendFilter(e) {
-  -#    $.ajax({
-  -#      type: 'get',
-  -#      dataType: 'jsonp',
-  -#      url: '/?day=' + e.value
-  -#    });
-  -#  }

@@ -43,9 +43,14 @@ td.time {
 }
 
 .main-menu-icon {
-    height: 12px;
+    height: 32px;
     float:left;
-    margin: 4px 10px 0 0
+    position: absolute;
+    top: 10px;
+}
+
+.main-menu-text {
+    margin: 0 0 0 36px ;
 }
 
 .btn-icon img{

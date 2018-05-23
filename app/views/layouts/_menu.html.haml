@@ -11,15 +11,17 @@
   %div{ class: 'collapse navbar-collapse', id: 'bs-example-navbar-collapse-1'}
     %ul.some{ class: 'nav navbar-nav'}
       - if user_signed_in?
+        - if current_user.charts?
+          = menu_item('Графики', charts_path, 'charts.png')
         - if current_user.dashboards?
-          = menu_item('Ошибки ПТКПСД', elo_usr_errs_path, 'users.png')
+          = menu_item('Ошибки ПТКПСД', elo_usr_errs_path, 'err.png')
         - if current_user.admin?
           = menu_item('Пользователи', users_path, 'users.png')
           = menu_item('Пользователи ПТКПСД', elo_users_path)
         - if current_user.f440?
-          = menu_item('440 Положение', f440_path, 'users.png')
+          = menu_item('440 Положение', f440_path)
         - if current_user.f311?
-          = menu_item('311 Положение', f311_path, 'users.png')
+          = menu_item('311 Положение', f311_path)
 
     %ul{ class: 'nav navbar-nav navbar-right' }
       - if user_signed_in?

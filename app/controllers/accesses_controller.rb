@@ -12,11 +12,6 @@ class AccessesController < ApplicationController
 
   def destroy
     a =  @user.accesses.find(params[:id])
-    p '*' * 70
-    p a
-    p '*' * 70
-    p a.role
-    p '*' * 70
     authorize a
     a.destroy
     @access = Access.new

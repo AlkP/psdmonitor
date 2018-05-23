@@ -9,8 +9,9 @@ Rails.application.routes.draw do
   resources :user_informations
   resources :elo_usr_errs
 
-  get '/f440', to: 'regulations#f440', as: 'f440'
-  get '/f311', to: 'regulations#f311', as: 'f311'
+  get '/charts',  to: 'regulations#charts', as: 'charts'
+  get '/f440',    to: 'regulations#f440',   as: 'f440'
+  get '/f311',    to: 'regulations#f311',   as: 'f311'
 
   root 'regulations#dashboards'
 end
